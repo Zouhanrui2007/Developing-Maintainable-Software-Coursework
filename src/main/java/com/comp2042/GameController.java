@@ -48,7 +48,7 @@ public class GameController {
     private final Timeline animation = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
         if (snek.getDead()) {
             return;
-        } else {
+        } else {        //I want change move method to wasd
 
             if (key.equals(KeyCode.LEFT)) {
                 snek.move('L');
@@ -127,7 +127,7 @@ public class GameController {
         else {
             if (key.equals(KeyCode.LEFT)) if (!this.key.equals(KeyCode.RIGHT)) return true;
             if (key.equals(KeyCode.RIGHT)) if (!this.key.equals(KeyCode.LEFT)) return true;
-            if (key.equals(KeyCode.DOWN)) if (!this.key.equals(KeyCode.DOWN)) return true;
+            if (key.equals(KeyCode.DOWN)) if (!this.key.equals(KeyCode.UP)) return true;  //snake cannot go down when it is up
             if (key.equals(KeyCode.UP)) return !this.key.equals(KeyCode.DOWN);
             return false;
         }
