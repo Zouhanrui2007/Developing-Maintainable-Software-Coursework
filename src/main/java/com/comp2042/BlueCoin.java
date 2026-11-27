@@ -1,20 +1,22 @@
+//collect the ability into the coin file
 package com.comp2042;
 
 import javafx.scene.image.Image;
 
-public class BlueCoin extends Coin {
-    private Image image = new Image("resources/views/res/bluecoin.png");
+public class BlueCoin extends Coin {    //define blue coin as a kind of coin
+    private final Image blueImage = new Image("resources/views/res/bluecoin.png");
 
-    public BlueCoin(int x, int y, Snake snek, Obstacle obstacle) {
-        super(x, y, snek, obstacle);
+    public BlueCoin(int width, int height, Snake snake, Obstacle obstacle) {
+        super(width, height, snake, obstacle);
     }
 
-    public int getPoints() {
-        int points = 5;
-        return points;
+    @Override
+    public void onCollected(Snake snake) {  //define what to do after eaten
+        snake.ignoreBorders(true);
     }
 
+    @Override
     public Image getImage() {
-        return image;
+        return blueImage;
     }
 }
