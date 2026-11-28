@@ -2,23 +2,27 @@ package com.comp2042;
 
 import javafx.scene.image.Image;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.Random;
 
 public class Coin {
-    private Point pos;
-    private Image image = new Image("resources/views/res/redcoin.png");
+    private static final int DEFAULT_POINTS = 5;
+    private final Point pos;
+    private final Image image = new Image("resources/views/res/redcoin.png");
 
-    public Coin(int x, int y, Snake snake, Obstacle obstacle) {
-        int tx;
-        int ty;
+    public Coin(int width, int height, Snake snake, Obstacle obstacle) {
+        Random random = new Random();
+        Point position;
+
         do {
-            Random rnd = new Random();
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
+            position = new Point(x, y);
+        } while (position.equals(snake.getHead())
+                || snake.getBody().contains(position)
+                || obstacle.getObstacles().contains(position));
 
-            tx = rnd.nextInt(x);
-            ty = rnd.nextInt(y);
-            pos = new Point(tx, ty);
-        } while (snake.getHead().equals(pos) || snake.getBody().contains(pos) || obstacle.getObstacles().contains(pos));
+        this.pos = position;
     }
 
     public Point getPos() {
@@ -26,11 +30,14 @@ public class Coin {
     }
 
     public int getPoints() {
-        int points = 5;
-        return points;
+        return DEFAULT_POINTS;
     }
 
-    public void onCollected(Snake snake) {
+    public double getSpeedBonus() {
+        return 0.0;
+    }
+
+    public void onCollected(Snake snake, Game game, Obstacle obstacle) {
     }
 
     public Image getImage() {

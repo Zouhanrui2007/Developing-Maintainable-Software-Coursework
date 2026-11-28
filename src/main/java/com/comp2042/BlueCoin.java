@@ -10,8 +10,9 @@ public class BlueCoin extends Coin {    //define blue coin as a kind of coin
         super(width, height, snake, obstacle);
     }
 
+
     @Override
-    public void onCollected(Snake snake) {  //define what to do after eaten
+    public void onCollected(Snake snake, Game game, Obstacle obstacle) {  //define what to do after eaten
         snake.ignoreBorders(true);
     }
 
