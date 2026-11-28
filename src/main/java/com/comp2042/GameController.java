@@ -157,18 +157,9 @@ public class GameController {
     }
 
     private void powerCoin() {
-        animation.setRate(game.getSpeed());
+        animation.setRate(game.getSpeed() + coin.getSpeedBonus());
         snake.ignoreBorders(false);
-        coin.onCollected(snake);
-
-        if (coin.getClass().equals(RainbowCoin.class)) {
-            RainbowCoin tempCoin = (RainbowCoin) coin;
-            animation.setRate(game.getSpeed() + tempCoin.getSpeedBonus());
-        } else if (coin.getClass().equals(SilverCoin.class)){
-            Random rnd = new Random();
-            obstacle.newObstacles(snake, coin, rnd.nextInt(game.getWidth() * game.getHeight()/ 20) +3);
-            game.decMaxScore(obstacle.getObstacles().size());
-        }
+        coin.onCollected(snake, game, obstacle);
         game.addPoints(coin.getPoints());
     }
 

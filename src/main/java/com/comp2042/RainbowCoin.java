@@ -3,23 +3,20 @@ package com.comp2042;
 import javafx.scene.image.Image;
 
 public class RainbowCoin extends Coin {
-    private Image image = new Image("resources/views/res/rainbowcoin.png");
+    private final Image rainbowImage = new Image("resources/views/res/rainbowcoin.png");
 
-    public RainbowCoin(int x, int y, Snake snake, Obstacle obstacle) {
-        super(x, y, snake, obstacle);
+    public RainbowCoin(int width, int height, Snake snake, Obstacle obstacle) {
+        super(width, height, snake, obstacle);
     }
 
-    public int getPoints() {
-        int points = 5;
-        return points;
-    }
 
+    @Override
     public double getSpeedBonus() {
-        double speedBonus = 5;
-        return speedBonus;
+        return 5.0;
     }
 
+    @Override
     public Image getImage() {
-        return image;
+        return rainbowImage;
     }
 }
